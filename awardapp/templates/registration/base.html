@@ -32,7 +32,7 @@
           <div class="form-group" style="margin-top:5%;">
             {%if name%}
             <input type="submit" class="btn btn-primary btn-sm" value="{{name}}">
-            <p>Already have an account? <a href="#"">Login</a></p>
+            <p>Already have an account? <a href="{%url 'login'%}"">Login</a></p>
             {%else%}
             <input type="submit" class="btn btn-primary btn-sm" value="Login">
             <p>Don't have an account? <a href="{%url 'signup'%}">Sign Up</a></p>
