@@ -35,6 +35,8 @@ INSTALLED_APPS = [
     'bootstrap4',
     'crispy_forms',
     'rest_framework',
+    'rest_framework.authtoken',
+    'rest_auth',
     'django.contrib.humanize',
     'django.contrib.admin',
     'django.contrib.auth',
