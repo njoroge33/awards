@@ -1,1 +1,26 @@
-<h1>hbjbvji</h1>
+{%extends 'base.html'%}
+
+
+{%block content%}
+{% include 'navbar.html'%}
+<div class="container-fluid" style="margin-top: 77px;">
+    <h1 class="text-center" style="font-family: 'Creepster', cursive;">Projects</h1>
+    <div class="row">
+
+        {% for project in projects %}
+        {% with go=image.allinfo %}
+        <div class="col-xs-6 col-sm-6 col-md-4 card" style="padding-top:1%;margin-top:1%;">
+            <img src="{{project.project_image.url}}" class="img-responsive" alt="Image" style="height:300px;width:100%;"
+                type="button" class="btn btn-sm btn-outline-primary" id="image{{image.id}}" data-whatever="{{image.id}}"
+                data-toggle="modal" data-target="#extraModal{{project.id}}">
+            <h5 class="text-center"> {{ project.caption }} </h5>
+        </div>
+        {%endwith%}
+        {% empty %}
+        <h3 class="text-center">There No Projects</h3>
+        {% endfor %}
+    </div>
+    
+</div>
+
+{%endblock%}

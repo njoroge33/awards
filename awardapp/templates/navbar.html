@@ -1,0 +1,31 @@
+{% load static%}
+
+<nav class="navbar navbar-dark bg-white fixed-top" style="box-shadow:1px 2px rgb(209, 208, 208);height: 77px;">
+  <div class="container-fluid">
+    <div class="navbar-header container">
+      <a href="/home" style="margin-top:1%;padding-right: 2%;font-size: 25px;">Awwards</a>
+      {% if user.is_authenticated %}
+      <a href="{%url 'logout'%}" class="btn btn-danger float-right"
+        style="margin-top:2%;margin-left: 1%;">logout</a>
+      <a href="#" class="btn btn-success float-right" style="margin-top:2%;margin-left: 1%;">post</a>
+
+      {%if user.profile.profile_photo%}
+      <div class="float-right pic">
+        <a href="/profile" ><img class="rounded-circle" src="{{user.profile.profile_photo.url}}"
+          style="height:70px;width: 70px;" alt="No profile pic">
+        <strong style="font-size:19px;">{{current_user.username | title}}</strong>
+        </a> 
+        
+      </div>
+      {%else%}
+
+      <a href="/profile" class="fa fa-user fa-3x float-right pic" style="margin-top:1%"><span
+          style="font-size:19px;">{{current_user.username | title}}</span></a>
+      {%endif%}
+
+      {% endif %}
+    </div>
+  </div>
+
+
+</nav>
