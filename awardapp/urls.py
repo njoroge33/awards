@@ -11,6 +11,9 @@ urlpatterns = [
     re_path(r'^login/', LoginView.as_view(), name='login'),
     re_path(r'^logout/', LogoutView.as_view(next_page='login'), name='logout'),
     re_path(r'^newproject/', views.new_project, name='new_project'),
+    re_path(r'^profile/', views.profile, name='profile'),
+    re_path(r'^updateprofile/', views.update_profile, name='update_profile'),
+    re_path(r'^api/project/', views.ProjectList.as_view()),
 ]
 if settings.DEBUG:
     urlpatterns+= static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
