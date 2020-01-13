@@ -13,9 +13,10 @@ urlpatterns = [
     re_path(r'^newproject/', views.new_project, name='new_project'),
     re_path(r'^profile/', views.profile, name='profile'),
     re_path(r'^updateprofile/', views.update_profile, name='update_profile'),
-    re_path(r'^api/project/', views.ProjectList.as_view()),
+    re_path(r'^api/projects/', views.ProjectList.as_view(), name='projects'),
     re_path(r'^api/rest-auth/', include('rest_auth.urls')),
-    re_path(r'^api/profile/', views.ProfileList.as_view()),
+    re_path(r'^api/profiles/', views.ProfileList.as_view(), name='profiles'),
+    re_path(r'^api/', views.api, name='api'),
 ]
 if settings.DEBUG:
     urlpatterns+= static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
