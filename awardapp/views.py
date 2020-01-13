@@ -2,8 +2,9 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from .forms import SignUpForm, NewProjectForm, ProfileForm
 from .models import Projects, Profile
-from rest_framework import generics
-from .serializers import ProjectSerializer
+from rest_framework import generics, status
+from .serializers import ProjectSerializer, ProfileSerializer
+from rest_framework.response import Response
 
 # Create your views here.
 @login_required(login_url='/login')
@@ -71,6 +72,17 @@ class ProjectList(generics.ListAPIView):
 
     def post(self,request):
         serializer = ProjectSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+class ProfileList(generics.ListAPIView):
+    queryset = Profile.objects.all()
+    serializer_class = ProfileSerializer
+
+    def post(self,request):
+        serializer = ProfileSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
